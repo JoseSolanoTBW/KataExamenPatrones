@@ -30,7 +30,16 @@ public class Mesa {
 		Jugadores.add(jugador);		
 	}
 	
-	
+	public void EmpezarAJugar21 () throws Exception {
+		repartidor.ObtenerNaipeCompleto();
+		repartidor.RevolverNaipe();
+		
+		for(Jugador player : Jugadores) {
+			repartidor.darCarta(player);
+			repartidor.darCarta(player);
+		}
+		
+	}
 	
 	
 }

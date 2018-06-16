@@ -22,6 +22,7 @@ public class MesaTest {
 
 	@Test
 	public void MesaSinJugadores() {
+		mesa =  new Mesa();
 		assertEquals(0, mesa.getJugadores().size());
 	}
 	
@@ -60,6 +61,42 @@ public class MesaTest {
 		mesa.agregarJugador(nuevoJugador5);
 		
 		assertEquals(4, mesa.getJugadores().size());
+	}
+	
+	@Test
+	public void RepartirCartas21() throws Exception {
+		mesa =  new Mesa();
+		
+		Jugador nuevoJugador = new Jugador();
+		mesa.agregarJugador(nuevoJugador);
+		Jugador segJugador = new Jugador();
+		mesa.agregarJugador(segJugador);
+		
+		Repartidor repartidor =  new Repartidor();
+		mesa.setRepartidor(repartidor);
+		
+		mesa.EmpezarAJugar21();
+		
+		assertEquals(2, mesa.getJugadores().get(0).getMano().size());
+		assertEquals(2, mesa.getJugadores().get(1).getMano().size());
+		
+	}
+	
+	@Test
+	public void MasoCartas21Disminucion() throws Exception {
+		mesa =  new Mesa();
+		
+		Jugador nuevoJugador = new Jugador();
+		mesa.agregarJugador(nuevoJugador);
+		Jugador segJugador = new Jugador();
+		mesa.agregarJugador(segJugador);
+		
+		Repartidor repartidor =  new Repartidor();
+		mesa.setRepartidor(repartidor);
+		
+		mesa.EmpezarAJugar21();
+		
+		assertEquals(48, mesa.getRepartidor().getNaipeCompleto().getCartas().size());
 	}
 
 }
