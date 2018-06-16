@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.ucenfotec.negocio.Carta;
 import com.ucenfotec.negocio.Jugador;
 import com.ucenfotec.negocio.Mesa;
 import com.ucenfotec.negocio.Repartidor;
@@ -98,5 +99,53 @@ public class MesaTest {
 		
 		assertEquals(48, mesa.getRepartidor().getNaipeCompleto().getCartas().size());
 	}
+		
+	@Test
+	public void EncotrarGanador21() throws Exception {
+		mesa =  new Mesa();
+		
+		Jugador nuevoJugador = new Jugador();
+		nuevoJugador.setNombre("Jose");
+		Carta carta = new Carta();
+		carta.CrearCarta("5","Flores", 5);
+		nuevoJugador.addCardToMano(carta);		
+		mesa.agregarJugador(nuevoJugador);
+		
+		Jugador segJugador = new Jugador();
+		segJugador.setNombre("Fer");
+		Carta segCarta = new Carta();
+		segCarta.CrearCarta("2","Estrellas", 2);
+		segJugador.addCardToMano(segCarta);	
+		mesa.agregarJugador(segJugador);
+		
+		Jugador ganador = mesa.RecibirManos();
+		
+		assertEquals("Jose", ganador.getNombre());
+	}
+	
+	@Test
+	public void Empate21() throws Exception {
+		mesa =  new Mesa();
+		
+		Jugador nuevoJugador = new Jugador();
+		nuevoJugador.setNombre("Jose");
+		Carta carta = new Carta();
+		carta.CrearCarta("10","Flores", 10);
+		nuevoJugador.addCardToMano(carta);		
+		mesa.agregarJugador(nuevoJugador);
+		
+		Jugador segJugador = new Jugador();
+		segJugador.setNombre("Fer");
+		Carta segCarta = new Carta();
+		segCarta.CrearCarta("10","Estrellas", 10);
+		segJugador.addCardToMano(segCarta);	
+		mesa.agregarJugador(segJugador);
+		
+		Jugador ganador = mesa.RecibirManos();
+		
+		assertTrue(ganador == null);
+	}
+	
+	
 
 }
