@@ -65,15 +65,53 @@ public class Mesa {
 				currentWinner = summaryUser;
 				winner =  player;
 				isADraw = false;
-			}
-				
-				
+			}				
 			summaryUser = 0;
 		}
 		
 		return winner;
 	}
 	
-
+	public Carta SeleccionarComodin (Carta comodin) 
+	{
+		ArrayList<Carta> maso =  repartidor.getNaipeCompleto().getCartas();
+		Carta selecion = null;
+		for(Carta card : maso) {
+			if (card.equals(comodin) && card.getPalo().equals(comodin.getPalo())) {
+				selecion = card;
+				break;
+			}
+		}
+		maso.remove(selecion);
+		
+		return selecion;
+	}
 	
+	public boolean ExisteCartaEnMaso (Carta comodin) 
+	{
+		ArrayList<Carta> maso =  repartidor.getNaipeCompleto().getCartas();
+		
+		for(Carta card : maso) {
+			if (card.equals(comodin) && card.getPalo().equals(comodin.getPalo())) {
+				return true;				
+			}
+		}
+				
+		return false;
+	}
+
+	public boolean CalcularGanadorAComodin (Jugador jugador, Carta comodin) 
+	{
+		ArrayList<Carta> mano =  jugador.getMano();
+		
+		int sumatoria = 0;
+		for(Carta card : mano) {
+			sumatoria += card.getValor();					
+		}
+		
+		if(sumatoria + comodin.getValor() == 21)
+			return true;
+		
+		return false;
+	}
 }

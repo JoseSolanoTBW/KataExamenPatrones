@@ -172,5 +172,58 @@ public class MesaTest {
 		assertEquals("Jose", ganador.getNombre());
 	}
 	
+	@Test
+	public void SacarComodin() throws Exception {
+		mesa =  new Mesa();
+		Repartidor repartidor =  new Repartidor();
+		mesa.setRepartidor(repartidor);
+		mesa.getRepartidor().ObtenerNaipeCompleto();
+		
+		Carta cartaComodin = new Carta();
+		cartaComodin.CrearCarta("10","Flores", 10);
+		
+		Carta comodinSeleccionado = mesa.SeleccionarComodin(cartaComodin);
+		
+		assertTrue(comodinSeleccionado.equals(cartaComodin));
+	}
+	
+	@Test
+	public void ValidarComodinFueraDelMaso() throws Exception {
+		mesa =  new Mesa();
+		Repartidor repartidor =  new Repartidor();
+		mesa.setRepartidor(repartidor);
+		mesa.getRepartidor().ObtenerNaipeCompleto();
+		
+		Carta cartaComodin = new Carta();
+		cartaComodin.CrearCarta("10","Flores", 10);
+		
+		Carta comodinSeleccionado = mesa.SeleccionarComodin(cartaComodin);
+		
+		assertTrue(mesa.ExisteCartaEnMaso(comodinSeleccionado));
+	}
+	
+	@Test
+	public void GanadorPorComodin() throws Exception {
+		mesa =  new Mesa();
+		Repartidor repartidor =  new Repartidor();
+		mesa.setRepartidor(repartidor);
+		
+		
+		Jugador nuevoJugador = new Jugador();
+		nuevoJugador.setNombre("Jose");
+		Carta carta = new Carta();
+		carta.CrearCarta("10","Flores", 10);
+		nuevoJugador.addCardToMano(carta);
+		Carta otherCarta = new Carta();
+		otherCarta.CrearCarta("As","Estrellas", 1);
+		nuevoJugador.addCardToMano(otherCarta);
+		
+		Carta cartaComodin = new Carta();
+		cartaComodin.CrearCarta("Jota","Gotas", 10);
+					
+		assertTrue(mesa.CalcularGanadorAComodin(nuevoJugador, cartaComodin));
+		
+	}
+	
 
 }
