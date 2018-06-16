@@ -1,5 +1,6 @@
 package com.ucenfotec.negocio;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 public class Repartidor {
@@ -28,6 +29,21 @@ public class Repartidor {
 		Carta cartaADar = NaipeCompleto.getCartas().get(0);
 		jugador.addCardToMano(cartaADar);
 		NaipeCompleto.getCartas().remove(cartaADar);
+		
+	}
+	
+	public boolean VerificarCambio(ArrayList<Carta> manoJugador) {
+		
+		int sumTotal = 0;
+		 
+		for(Carta card : manoJugador) {
+			sumTotal +=  card.getValor();
+		}
+		
+		if(sumTotal == 13)
+			return true;
+		
+		return false;
 		
 	}
 	

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.ucenfotec.negocio.Carta;
 import com.ucenfotec.negocio.Jugador;
 import com.ucenfotec.negocio.Naipe;
 import com.ucenfotec.negocio.Repartidor;
@@ -58,6 +59,27 @@ public class RepartidorTest {
 		Jugador nuevoJugador = new  Jugador();
 		repartidor.darCarta(nuevoJugador);
 		assertEquals(1, nuevoJugador.getMano().size());
+	}
+	
+	@Test
+	public void NoPuedeCambiarMaso() throws Exception {
+		Jugador nuevoJugador = new  Jugador();		
+		Carta carta = new Carta();
+		carta.CrearCarta("5","Flores", 5);
+		nuevoJugador.addCardToMano(carta);	
+		assertFalse(repartidor.VerificarCambio(nuevoJugador.getMano()));
+	}
+	
+	@Test
+	public void PuedeCambiarMaso() throws Exception {
+		Jugador nuevoJugador = new  Jugador();
+		Carta carta = new Carta();
+		carta.CrearCarta("3","Estrellas", 3);
+		nuevoJugador.addCardToMano(carta);
+		Carta otraCarta = new Carta();
+		otraCarta.CrearCarta("Jota","Estrellas", 10);
+		nuevoJugador.addCardToMano(otraCarta);
+		assertTrue(repartidor.VerificarCambio(nuevoJugador.getMano()));
 	}
 
 }
