@@ -146,6 +146,31 @@ public class MesaTest {
 		assertTrue(ganador == null);
 	}
 	
+	@Test
+	public void GanadorPor21Medio() throws Exception {
+		mesa =  new Mesa();
+		
+		Jugador nuevoJugador = new Jugador();
+		nuevoJugador.setNombre("Jose");
+		Carta carta = new Carta();
+		carta.CrearCarta("10","Flores", 10);
+		nuevoJugador.addCardToMano(carta);	
+		Carta segCarta = new Carta();
+		segCarta.CrearCarta("2","Estrellas", 2);
+		nuevoJugador.addCardToMano(segCarta);	
+		mesa.agregarJugador(nuevoJugador);
+		
+		Jugador segJugador = new Jugador();
+		segJugador.setNombre("Fer");
+		Carta anotherCarta = new Carta();
+		anotherCarta.CrearCarta("10","Estrellas", 10);
+		segJugador.addCardToMano(anotherCarta );	
+		mesa.agregarJugador(segJugador);
+		
+		Jugador ganador = mesa.RecibirManos();
+		
+		assertEquals("Jose", ganador.getNombre());
+	}
 	
 
 }

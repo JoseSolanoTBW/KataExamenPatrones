@@ -48,6 +48,7 @@ public class Mesa {
 		int summaryUser = 0;
 		Jugador winner = null;
 		
+		
 		for(Jugador player : Jugadores) {
 			for(Carta card : player.getMano()) {
 				summaryUser += card.getValor();
@@ -55,7 +56,11 @@ public class Mesa {
 			if(currentWinner == summaryUser) {
 				isADraw = false;
 				winner = null;
-			}	
+			}
+			else if(summaryUser == 12) {
+				winner = player;
+				break;
+			}
 			else if(currentWinner < summaryUser && summaryUser <= 21) {
 				currentWinner = summaryUser;
 				winner =  player;
