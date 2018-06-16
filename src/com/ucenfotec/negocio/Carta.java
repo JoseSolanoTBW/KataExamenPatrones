@@ -41,21 +41,30 @@ public class Carta {
 		    add("Ka");		    
 		}};
 		
-		if(valor > 10 || valor <= 0 )
+		if(valor > 13 || valor <= 0 )
 			throw new Exception("Los valores permetidos son entre 1 y 10");
 		
 		this.setValor(valor);
 		this.setNombre(nombre);
 		this.setPalo(palo);
 		
-		nombreDisponible.forEach(c -> {			
-			if(c.equals(nombre)) 
+		nombreDisponible.forEach(n -> {			
+			if(n.equals(nombre) || valor > 10) 
 				this.setValor(10);					
 		});
 		
 		if(nombre.equals("As"))
 			this.setValor(1);
-	}
+		
+		if(valor == 11)
+			this.setNombre("Jota");
+		else if(valor == 12)
+			this.setNombre("Quina");
+		else if(valor == 13)
+			this.setNombre("K");		
+		else if(valor == 1)
+			this.setNombre("As");
+	}		
 
 	@Override
 	public boolean equals(Object obj) {

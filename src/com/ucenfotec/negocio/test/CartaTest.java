@@ -35,10 +35,10 @@ public class CartaTest {
 		assertEquals("Quina", carta.getNombre());
 	}
 	
-	/// Validando que solo existan cartas de 1 a 10
+	/// Validando que solo existan cartas de 1 a 13
 	@Test(expected = Exception.class)
 	public void CrearCartaFueraDeRangoTest() throws Exception{
-		carta.CrearCarta("12","Gotas", 12);
+		carta.CrearCarta("0","Gotas", -1);
 	}
 	
 	/// Validando que se cree el As de manera correcta aunque el valor no sea el bueno, probando funcionalidad de que el AS debe ser 1 
