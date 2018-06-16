@@ -10,7 +10,7 @@ import com.ucenfotec.negocio.Naipe;
 
 public class NaipeTest {
 
-static Naipe naipe;
+	static Naipe naipe;
 	
 	//Inicializador 
 	@BeforeClass
