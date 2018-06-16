@@ -50,4 +50,20 @@ public class CartaTest {
 		assertEquals("Estrellas", carta.getPalo());
 	}
 	
+	@Test
+	public void CartasIguales() throws Exception{
+		carta.CrearCarta("K","Flores", 10);
+		Carta nuevaCarta = new Carta();
+		nuevaCarta.CrearCarta("K","Estrellas", 10);
+		assertTrue(carta.equals(nuevaCarta));
+	}
+	
+	@Test
+	public void CartasDiferentes() throws Exception{
+		carta.CrearCarta("Jota","Estrellas", 10);
+		Carta nuevaCarta = new Carta();
+		nuevaCarta.CrearCarta("Quina","Estrellas", 10);
+		assertFalse(carta.equals(nuevaCarta));
+		
+	}
 }
