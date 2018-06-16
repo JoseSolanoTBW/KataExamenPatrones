@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.ucenfotec.negocio.Jugador;
 import com.ucenfotec.negocio.Naipe;
 import com.ucenfotec.negocio.Repartidor;
 
@@ -41,6 +42,22 @@ public class RepartidorTest {
 		repartidor.ObtenerNaipeCompleto();
 		Naipe naipe2 = repartidor.getNaipeCompleto();
 		assertFalse(naipe1.equals(naipe2));		
+	}
+	
+	@Test
+	public void DarCarta() throws Exception {
+		repartidor.ObtenerNaipeCompleto();
+		Jugador nuevoJugador = new  Jugador();
+		repartidor.darCarta(nuevoJugador);
+		assertEquals(51, repartidor.getNaipeCompleto().getCartas().size());
+	}
+	
+	@Test
+	public void JugadorConCarta() throws Exception {
+		repartidor.ObtenerNaipeCompleto();
+		Jugador nuevoJugador = new  Jugador();
+		repartidor.darCarta(nuevoJugador);
+		assertEquals(1, nuevoJugador.getMano().size());
 	}
 
 }

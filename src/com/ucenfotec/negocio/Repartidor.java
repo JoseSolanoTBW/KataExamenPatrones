@@ -23,4 +23,13 @@ public class Repartidor {
 		Collections.shuffle(NaipeCompleto.getCartas());
 	}
 	
+	public void darCarta(Jugador jugador) {
+			
+		Carta cartaADar = NaipeCompleto.getCartas().get(0);
+		jugador.addCardToMano(cartaADar);
+		NaipeCompleto.getCartas().remove(cartaADar);
+		
+	}
+	
+	
 }
