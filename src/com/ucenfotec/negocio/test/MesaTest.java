@@ -2,7 +2,6 @@ package com.ucenfotec.negocio.test;
 
 import static org.junit.Assert.*;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.ucenfotec.negocio.Carta;
@@ -14,13 +13,6 @@ public class MesaTest {
 	
 	static Mesa mesa;
 	
-	//Inicializador 
-	
-	@BeforeClass
-	public static void init() {
-		mesa =  new Mesa();
-	}
-
 	@Test
 	public void MesaSinJugadores() {
 		mesa =  new Mesa();
@@ -73,9 +65,6 @@ public class MesaTest {
 		Jugador segJugador = new Jugador();
 		mesa.agregarJugador(segJugador);
 		
-		Repartidor repartidor =  new Repartidor();
-		mesa.setRepartidor(repartidor);
-		
 		mesa.EmpezarAJugar21();
 		
 		assertEquals(2, mesa.getJugadores().get(0).getMano().size());
@@ -89,11 +78,7 @@ public class MesaTest {
 		Jugador nuevoJugador = new Jugador();
 		mesa.agregarJugador(nuevoJugador);
 		Jugador segJugador = new Jugador();
-		mesa.agregarJugador(segJugador);
-		
-		Repartidor repartidor =  new Repartidor();
-		mesa.setRepartidor(repartidor);
-		
+		mesa.agregarJugador(segJugador);		
 		mesa.EmpezarAJugar21();
 		
 		assertEquals(48, mesa.getRepartidor().getNaipeCompleto().getCartas().size());
@@ -204,8 +189,6 @@ public class MesaTest {
 	@Test
 	public void GanadorPorComodin() throws Exception {
 		mesa =  new Mesa();
-		Repartidor repartidor =  new Repartidor();
-		mesa.setRepartidor(repartidor);		
 		Jugador nuevoJugador = new Jugador();
 		nuevoJugador.setNombre("Jose");
 		Carta carta = new Carta();
@@ -225,9 +208,6 @@ public class MesaTest {
 	@Test
 	public void Jugadores7CartasRon() throws Exception {
 		mesa =  new Mesa();
-		Repartidor repartidor =  new Repartidor();
-		mesa.setRepartidor(repartidor);	
-		
 		Jugador nuevoJugador = new Jugador();
 		mesa.agregarJugador(nuevoJugador);
 		Jugador otroJugador = new Jugador();
@@ -243,8 +223,6 @@ public class MesaTest {
 	@Test
 	public void CartasSalteadas() throws Exception {
 		mesa =  new Mesa();
-		Repartidor repartidor =  new Repartidor();
-		mesa.setRepartidor(repartidor);	
 		Jugador nuevoJugador = new Jugador();
 		mesa.agregarJugador(nuevoJugador);
 		Jugador otroJugador = new Jugador();
@@ -258,8 +236,7 @@ public class MesaTest {
 	@Test
 	public void DejarNaipeEnDeck() throws Exception {
 		mesa =  new Mesa();
-		Repartidor repartidor =  new Repartidor();
-		mesa.setRepartidor(repartidor);	
+
 		Jugador nuevoJugador = new Jugador();
 		mesa.agregarJugador(nuevoJugador);
 		Jugador otroJugador = new Jugador();
@@ -272,8 +249,7 @@ public class MesaTest {
 	@Test
 	public void TomarCartaDeck() throws Exception {
 		mesa =  new Mesa();
-		Repartidor repartidor =  new Repartidor();
-		mesa.setRepartidor(repartidor);	
+				
 		Jugador nuevoJugador = new Jugador();
 		mesa.agregarJugador(nuevoJugador);
 		Jugador otroJugador = new Jugador();
@@ -286,8 +262,28 @@ public class MesaTest {
 		assertEquals(36, mesa.getDeck().getNaipeDeck().getCartas().size());		
 	}
 	
+	@Test
+	public void ReiniciarTodo() throws Exception {
+		mesa =  new Mesa();
+		
+		Jugador nuevoJugador = new Jugador();
+		mesa.agregarJugador(nuevoJugador);
+		
+		mesa.Reset();
+		assertEquals(0, mesa.getJugadores().size());
+	}
 	
-	
+	@Test
+	public void NaipeReiniciado() throws Exception {
+		mesa =  new Mesa();
+		
+		mesa.EmpezarAJugar21();
+		
+		Carta cartaDuranteJuego = mesa.getRepartidor().getNaipeCompleto().getCartas().get(0);
+		mesa.Reset();
+		Carta cartaDespuesDeReinicio = mesa.getRepartidor().getNaipeCompleto().getCartas().get(0);
+		assertFalse(cartaDuranteJuego.equals(cartaDespuesDeReinicio));
+	}
 	
 
 }

@@ -39,14 +39,14 @@ public class Mesa {
 	}
 
 	public void EmpezarAJugar21 () throws Exception {
+		repartidor = new Repartidor();
 		repartidor.ObtenerNaipeCompleto();
 		repartidor.RevolverNaipe();
 		
 		for(Jugador player : Jugadores) {
 			repartidor.darCarta(player);
 			repartidor.darCarta(player);
-		}
-		
+		}		
 	}
 	
 	public Jugador RecibirManos() {
@@ -125,6 +125,7 @@ public class Mesa {
 	
 	
 	public void empezarPartidaDeRon() throws Exception {
+		repartidor = new Repartidor();
 		repartidor.ObtenerNaipeCompleto();
 		repartidor.RevolverNaipe();
 		int numeroDeCartasAReparitr = Jugadores.size() * 7;
@@ -156,4 +157,11 @@ public class Mesa {
 				
 		return false;
 	}
+	
+	public void Reset() throws Exception {
+		repartidor = new Repartidor();
+		repartidor.ObtenerNaipeCompleto();
+		Jugadores.clear();
+	}
+	
 }
