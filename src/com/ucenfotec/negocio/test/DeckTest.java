@@ -42,5 +42,23 @@ public class DeckTest {
 		
 		assertEquals(36, mesa.getDeck().getNaipeDeck().getCartas().size());		
 	}
+	
+	@Test
+	public void DesecharCartaDeck() throws Exception {
+		mesa =  new Mesa();
+		Repartidor repartidor =  new Repartidor();
+		mesa.setRepartidor(repartidor);	
+		Jugador nuevoJugador = new Jugador();
+		mesa.agregarJugador(nuevoJugador);
+		Jugador otroJugador = new Jugador();
+		mesa.agregarJugador(otroJugador);
+		
+		mesa.empezarPartidaDeRon();
+		mesa.getDeck().tomarCarta(nuevoJugador);
+		mesa.getDeck().tomarCarta(otroJugador);
+		
+		assertEquals(7, mesa.getJugadores().get(0).getMano().size());
+		assertEquals(7, mesa.getJugadores().get(1).getMano().size());
+	}
 
 }
