@@ -79,8 +79,7 @@ public class MesaTest {
 		mesa.EmpezarAJugar21();
 		
 		assertEquals(2, mesa.getJugadores().get(0).getMano().size());
-		assertEquals(2, mesa.getJugadores().get(1).getMano().size());
-		
+		assertEquals(2, mesa.getJugadores().get(1).getMano().size());		
 	}
 	
 	@Test
@@ -206,9 +205,7 @@ public class MesaTest {
 	public void GanadorPorComodin() throws Exception {
 		mesa =  new Mesa();
 		Repartidor repartidor =  new Repartidor();
-		mesa.setRepartidor(repartidor);
-		
-		
+		mesa.setRepartidor(repartidor);		
 		Jugador nuevoJugador = new Jugador();
 		nuevoJugador.setNombre("Jose");
 		Carta carta = new Carta();
@@ -229,8 +226,7 @@ public class MesaTest {
 	public void Jugadores7CartasRon() throws Exception {
 		mesa =  new Mesa();
 		Repartidor repartidor =  new Repartidor();
-		mesa.setRepartidor(repartidor);
-		
+		mesa.setRepartidor(repartidor);	
 		
 		Jugador nuevoJugador = new Jugador();
 		mesa.agregarJugador(nuevoJugador);
@@ -248,9 +244,7 @@ public class MesaTest {
 	public void CartasSalteadas() throws Exception {
 		mesa =  new Mesa();
 		Repartidor repartidor =  new Repartidor();
-		mesa.setRepartidor(repartidor);
-		
-		
+		mesa.setRepartidor(repartidor);	
 		Jugador nuevoJugador = new Jugador();
 		mesa.agregarJugador(nuevoJugador);
 		Jugador otroJugador = new Jugador();
@@ -260,6 +254,40 @@ public class MesaTest {
 		
 		assertFalse(mesa.getJugadores().get(0).getMano().get(0).equals(mesa.getJugadores().get(1).getMano().get(0)));
 	}
+	
+	@Test
+	public void DejarNaipeEnDeck() throws Exception {
+		mesa =  new Mesa();
+		Repartidor repartidor =  new Repartidor();
+		mesa.setRepartidor(repartidor);	
+		Jugador nuevoJugador = new Jugador();
+		mesa.agregarJugador(nuevoJugador);
+		Jugador otroJugador = new Jugador();
+		mesa.agregarJugador(otroJugador);
+		
+		mesa.empezarPartidaDeRon();
+		assertTrue(mesa.getDeck() != null);		
+	}
+	
+	@Test
+	public void TomarCartaDeck() throws Exception {
+		mesa =  new Mesa();
+		Repartidor repartidor =  new Repartidor();
+		mesa.setRepartidor(repartidor);	
+		Jugador nuevoJugador = new Jugador();
+		mesa.agregarJugador(nuevoJugador);
+		Jugador otroJugador = new Jugador();
+		mesa.agregarJugador(otroJugador);
+		
+		mesa.empezarPartidaDeRon();
+		mesa.getDeck().tomarCarta(nuevoJugador);
+		mesa.getDeck().tomarCarta(otroJugador);
+		
+		assertEquals(36, mesa.getDeck().getNaipeDeck().getCartas().size());		
+	}
+	
+	
+	
 	
 
 }

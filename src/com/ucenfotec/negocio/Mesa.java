@@ -6,6 +6,7 @@ public class Mesa {
 
 	private Repartidor repartidor;
 	private ArrayList<Jugador> Jugadores;
+	private Deck deck;
 	
 	public Mesa() {
 		Jugadores = new ArrayList<>();
@@ -29,7 +30,14 @@ public class Mesa {
 		
 		Jugadores.add(jugador);		
 	}
-	
+	public Deck getDeck() {
+		return deck;
+	}
+
+	public void setDeck(Deck deck) {
+		this.deck = deck;
+	}
+
 	public void EmpezarAJugar21 () throws Exception {
 		repartidor.ObtenerNaipeCompleto();
 		repartidor.RevolverNaipe();
@@ -119,7 +127,6 @@ public class Mesa {
 	public void empezarPartidaDeRon() throws Exception {
 		repartidor.ObtenerNaipeCompleto();
 		repartidor.RevolverNaipe();
-				
 		int numeroDeCartasAReparitr = Jugadores.size() * 7;
 		
 		do {
@@ -128,5 +135,25 @@ public class Mesa {
 				numeroDeCartasAReparitr--;
 			}			
 		}while(numeroDeCartasAReparitr != 0);
+		
+		dejarNaipeEnDeck(repartidor.getNaipeCompleto());
 	}	
+	
+	private void dejarNaipeEnDeck(Naipe naipeRepartidor) {
+		deck =  new Deck();
+		deck.seDeckWithtNaipe(naipeRepartidor);
+	}
+	
+	public boolean ExisteCartaEnManoJugador (Carta carta, Jugador jugador) 
+	{
+		ArrayList<Carta> manoJug =  jugador.getMano();
+		
+		for(Carta card : manoJug) {
+			if (card.equals(carta) && card.getPalo().equals(carta.getPalo())) {
+				return true;				
+			}
+		}
+				
+		return false;
+	}
 }
