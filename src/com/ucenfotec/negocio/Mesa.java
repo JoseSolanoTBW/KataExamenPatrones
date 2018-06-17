@@ -114,4 +114,19 @@ public class Mesa {
 		
 		return false;
 	}
+	
+	
+	public void empezarPartidaDeRon() throws Exception {
+		repartidor.ObtenerNaipeCompleto();
+		repartidor.RevolverNaipe();
+				
+		int numeroDeCartasAReparitr = Jugadores.size() * 7;
+		
+		do {
+			for(Jugador player : Jugadores) {
+				repartidor.darCarta(player);
+				numeroDeCartasAReparitr--;
+			}			
+		}while(numeroDeCartasAReparitr != 0);
+	}	
 }

@@ -225,5 +225,41 @@ public class MesaTest {
 		
 	}
 	
+	@Test
+	public void Jugadores7CartasRon() throws Exception {
+		mesa =  new Mesa();
+		Repartidor repartidor =  new Repartidor();
+		mesa.setRepartidor(repartidor);
+		
+		
+		Jugador nuevoJugador = new Jugador();
+		mesa.agregarJugador(nuevoJugador);
+		Jugador otroJugador = new Jugador();
+		mesa.agregarJugador(otroJugador);
+		
+		mesa.empezarPartidaDeRon();
+		
+		assertEquals(7, mesa.getJugadores().get(0).getMano().size());
+		assertEquals(7, mesa.getJugadores().get(1).getMano().size());
+		
+	}
+	
+	@Test
+	public void CartasSalteadas() throws Exception {
+		mesa =  new Mesa();
+		Repartidor repartidor =  new Repartidor();
+		mesa.setRepartidor(repartidor);
+		
+		
+		Jugador nuevoJugador = new Jugador();
+		mesa.agregarJugador(nuevoJugador);
+		Jugador otroJugador = new Jugador();
+		mesa.agregarJugador(otroJugador);
+		
+		mesa.empezarPartidaDeRon();
+		
+		assertFalse(mesa.getJugadores().get(0).getMano().get(0).equals(mesa.getJugadores().get(1).getMano().get(0)));
+	}
+	
 
 }
